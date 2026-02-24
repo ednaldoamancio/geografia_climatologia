@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Enem: Climatologia e Atmosfera</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background-color: #fff;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .question-box {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .question-box.active {
+            display: block;
+        }
+        .options {
+            list-style-type: none;
+            padding: 0;
+        }
+        .options li {
+            background-color: #ecf0f1;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 2px solid transparent;
+        }
+        .options li:hover {
+            background-color: #d5dbdb;
+        }
+        .options li.selected {
+            background-color: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+        .btn {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #27ae60;
+        }
+        .btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        #result-screen, #ranking-screen, #start-screen {
+            display: none;
+            text-align: center;
+        }
+        .score-display {
+            font-size: 3em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .ranking-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+        }
+        .ranking-list li {
+            background: #f9f9f9;
+            margin: 5px 0;
+            padding: 10px;
+            border-left: 5px solid #3498db;
+            display: flex;
+            justify-content: space-between;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #3498db;
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌍 Desafio Climatologia: Rumo a Nota 1000!</h1>
+
+    <div id="start-screen" style="display: block;">
+        <p>Bem-vindo ao simulado de Climatologia. São 20 questões elaboradas a partir do nosso material de estudos.</p>
+        <p><strong>Regras:</strong> Cada questão vale 50 pontos. O objetivo de sua equipe é atingir 1000 pontos. Refaça até conseguir a excelência!</p>
+        <button class="btn" onclick="startQuiz()">Iniciar Simulado</button>
+        <button class="btn" style="background-color: #f39c12; margin-top: 10px;" onclick="showRankingOnly()">Ver Diário de Notas (Ranking)</button>
+    </div>
+
+    <div id="quiz-screen" style="display: none;">
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+        <h3 id="question-counter">Questão 1 de 20</h3>
+        
+        <div id="questions-container">
+            </div>
+
+        <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Confirmar Resposta</button>
+    </div>
+
+    <div id="result-screen">
+        <h2>Fim do Simulado!</h2>
+        <p>Sua pontuação final (estilo ENEM) foi:</p>
+        <div class="score-display"><span id="final-score">0</span> / 1000</div>
+        
+        <p>Digite seu NOME e o nome da sua EQUIPE para registrar no diário do professor:</p>
+        <input type="text" id="student-name" placeholder="Ex: João Silva - Equipe Alfa">
+        <button class="btn" onclick="saveScore()">Salvar Pontuação</button>
+        <button class="btn" style="background-color: #34495e; margin-top: 10px;" onclick="location.reload()">Tentar Novamente</button>
+    </div>
+
+    <div id="ranking-screen">
+        <h2>Diário de Notas do Professor</h2>
+        <p>As notas estão salvas neste aparelho.</p>
+        <ul class="ranking-list" id="ranking-list">
+            </ul>
+        <button class="btn" onclick="location.reload()">Voltar ao Início</button>
+    </div>
+
+</div>
+
+<script>
+    const questionsData = [
+        {
+            q: "A Organização Mundial de Meteorologia estabelece que, para definir o clima de uma região, é necessário analisar as condições atmosféricas habituais por um período mínimo de:",
+            options: ["10 anos.", "20 anos.", "30 anos.", "50 anos.", "1 ano."],
+            a: 2
+        },
+        {
+            q: "Se um noticiário informa que 'uma frente fria provocará chuvas fortes e queda de temperatura amanhã', ele está se referindo ao:",
+            options: ["Clima, porque afeta a agricultura.", "Tempo, pois relata um estado momentâneo e específico da atmosfera.", "Clima, pois envolve fatores geográficos definitivos.", "Tempo, pois representa o aquecimento global.", "Tempo e Clima, que são sinônimos."],
+            a: 1
+        },
+        {
+            q: "A camada da atmosfera terrestre onde ocorrem os principais fenômenos meteorológicos (chuva, vento, nuvens) é a:",
+            options: ["Estratosfera.", "Mesosfera.", "Termosfera.", "Exosfera.", "Troposfera."],
+            a: 4
+        },
+        {
+            q: "A camada de ozônio, que protege o planeta filtrando parte da radiação solar ultravioleta, está localizada na:",
+            options: ["Troposfera.", "Estratosfera.", "Ionósfera.", "Mesosfera.", "Exosfera."],
+            a: 1
+        },
+        {
+            q: "O Efeito Coriolis atua desviando os movimentos de grandes massas de ar e determinando o sentido de rotação de furacões. Esse efeito é causado pela:",
+            options: ["Diferença de altitude do relevo terrestre.", "Translação da Terra ao redor do Sol.", "Atração gravitacional da Lua.", "Rotação da Terra.", "Diferença de salinidade nos oceanos."],
+            a: 3
+        },
+        {
+            q: "Nas áreas de BAIXA pressão atmosférica terrestre, observa-se predominantemente o seguinte comportamento:",
+            options: ["O ar frio desce, inibindo a formação de nuvens (clima seco).", "O ar quente sobe levando umidade, favorecendo a formação de nuvens e chuvas.", "Os ventos estagnam por causa das altas montanhas.", "Ocorrem frentes frias extremas que congelam a umidade.", "A pressão é tão alta que repele tempestades marítimas."],
+            a: 1
+        },
+        {
+            q: "Qual dos fatores climáticos abaixo justifica a seguinte afirmação: 'Cidades litorâneas (como Recife) possuem menor variação de temperatura ao longo do ano do que cidades do interior (como Cuiabá)'?",
+            options: ["Altitude.", "Latitude.", "Relevo.", "Maritimidade e Continentalidade.", "Correntes oceânicas."],
+            a: 3
+        },
+        {
+            q: "Em relação ao fator Altitude, a regra geral para o comportamento da temperatura na troposfera é:",
+            options: ["Quanto mais alto, mais quente e denso é o ar.", "Quanto mais alto, a temperatura não sofre variação, apenas a pressão cai.", "Quanto mais alto, mais frio e menos denso é o ar.", "Quanto mais alto, mais denso é o ar, mas a temperatura aumenta.", "A altitude afeta apenas a ocorrência de ventos, não a temperatura."],
+            a: 2
+        },
+        {
+            q: "O relevo montanhoso age como barreira. A face da montanha que recebe os ventos úmidos e concentra as chuvas é chamada de:",
+            options: ["Sotavento.", "Maritimidade.", "Célula de Hadley.", "Barlavento.", "Alísio."],
+            a: 3
+        },
+        {
+            q: "O que as colunas (barras verticais) e a linha curva representam, respectivamente, na leitura de um climograma?",
+            options: ["Temperatura e Vento.", "Vento e Umidade.", "Precipitação (chuvas) e Temperatura.", "Umidade Relativa e Pressão.", "Altitude e Latitude."],
+            a: 2
+        },
+        {
+            q: "Ao analisar o climograma da região de Clima Tropical (ex: Cuiabá-MT), é possível observar de forma muito clara a existência de:",
+            options: ["Chuvas extremamente regulares ao longo dos 12 meses, sem estação seca.", "Temperaturas negativas em pelo menos 6 meses do ano.", "Alta pluviosidade de verão e uma nítida estação seca no inverno.", "Um índice de chuva anual muito baixo, caracterizando área de deserto.", "Nenhuma variação de temperatura durante o ano todo."],
+            a: 2
+        },
+        {
+            q: "Um climograma com temperaturas permanentemente elevadas o ano todo e chuvas muito irregulares e escassas, acumulando menos de 600 mm anuais concentrados em poucos meses, descreve um clima:",
+            options: ["Equatorial.", "Semiárido.", "Subtropical.", "Subpolar.", "Mediterrâneo."],
+            a: 1
+        },
+        {
+            q: "Diferente de grande parte do Brasil, o Clima Subtropical (ex: Orlando/EUA ou Sul do Brasil) apresenta em seu climograma:",
+            options: ["Quatro estações do ano bem definidas e grande amplitude térmica entre verão e inverno.", "Chuvas concentradas somente nos 2 meses de verão e o resto do ano seco.", "Temperaturas acima de 30ºC todos os meses e pouquíssima chuva.", "Um comportamento idêntico ao clima da Floresta Amazônica.", "Invernos rigorosos de nove meses com forte nevasca anual."],
+            a: 0
+        },
+        {
+            q: "O clima que é famoso por possuir VERÕES quentes e SECOS, e INVERNOS amenos e CHUVOSOS, característico de cidades como Atenas (Grécia) e Roma (Itália), chama-se:",
+            options: ["Tropical Úmido.", "Equatorial.", "Subpolar.", "Mediterrâneo.", "Tropical Monçônico."],
+            a: 3
+        },
+        {
+            q: "Correntes marítimas frias, ao passarem por regiões costeiras, reduzem a evaporação e a umidade do ar, sendo muitas vezes responsáveis por:",
+            options: ["Causar inundações contínuas.", "Derreter geleiras polares.", "Aquecer a atmosfera gerando tornados.", "Favorecer a aridez, formando desertos costeiros.", "Aumentar a proliferação de florestas densas."],
+            a: 3
+        },
+        {
+            q: "Os ventos predominantes que sopram dos trópicos em direção ao equador e são fundamentais para a dinâmica climática global são os:",
+            options: ["Ventos de oeste.", "Alísios.", "Polares.", "Monções secas.", "Contra-alísios."],
+            a: 1
+        },
+        {
+            q: "No estudo das Zonas de Circulação, o ar que sobe e desce forma grandes células que ajudam a distribuir calor na Terra. O nome das três principais células são:",
+            options: ["Equador, Trópico e Polo.", "Pacífico, Atlântico e Índico.", "Coriolis, Barlavento e Sotavento.", "Hadley, Ferrel e Polar.", "Maritimidade, Continentalidade e Altitude."],
+            a: 3
+        },
+        {
+            q: "A Floresta Amazônica é um bioma diretamente influenciado pelo clima Equatorial. No climograma desse clima, observa-se:",
+            options: ["Chuvas abundantes o ano inteiro e temperaturas sempre elevadas.", "Verões chuvosos e invernos frios e secos.", "Precipitação de neve nos meses de junho e julho.", "Chuvas irregulares com forte estação seca.", "Temperaturas médias não ultrapassando os 15ºC ao longo do ano."],
+            a: 0
+        },
+        {
+            q: "Massas de ar são grandes volumes de ar que carregam as características de onde se formam. No Brasil, qual massa é a grande responsável pelas fortes quedas de temperatura e frentes frias no Sul e Sudeste durante o inverno?",
+            options: ["Massa Equatorial continental (mEc).", "Massa Tropical continental (mTc).", "Massa Polar atlântica (mPa).", "Massa Tropical atlântica (mTa).", "Massa Equatorial atlântica (mEa)."],
+            a: 2
+        },
+        {
+            q: "A cidade de Fairbanks, no Alasca, possui clima Subpolar. A principal característica gráfica em seu climograma é:",
+            options: ["Temperaturas quentes constantes de 25ºC o ano todo.", "Invernos longos com temperaturas abaixo de zero (ex: -17ºC) e verões curtos e amenos.", "Altos índices de chuvas (acima de 4000 mm) devido ao derretimento do gelo.", "Curva de precipitação e temperatura idênticas às de uma cidade desértica quente.", "Quatro estações do ano extremamente regulares em chuva e calor."],
+            a: 1
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let selectedOption = null;
+
+    const quizContainer = document.getElementById('questions-container');
+    const nextBtn = document.getElementById('next-btn');
+
+    // Inicializa as perguntas na interface
+    function buildQuiz() {
+        questionsData.forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = `question-box ${index === 0 ? 'active' : ''}`;
+            div.id = `q-${index}`;
+            
+            let optionsHtml = '';
+            item.options.forEach((opt, optIndex) => {
+                optionsHtml += `<li onclick="selectOption(${index}, ${optIndex}, this)">${opt}</li>`;
+            });
+
+            div.innerHTML = `
+                <h3>${index + 1}. ${item.q}</h3>
+                <ul class="options">
+                    ${optionsHtml}
+                </ul>
+            `;
+            quizContainer.appendChild(div);
+        });
+    }
+
+    function startQuiz() {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        buildQuiz();
+        updateProgress();
+    }
+
+    function selectOption(qIndex, optIndex, element) {
+        // Remove seleção anterior
+        const optionsList = element.parentElement.children;
+        for(let i=0; i<optionsList.length; i++) {
+            optionsList[i].classList.remove('selected');
+        }
+        // Aplica a nova seleção
+        element.classList.add('selected');
+        selectedOption = optIndex;
+        nextBtn.disabled = false;
+    }
+
+    function nextQuestion() {
+        // Verifica a resposta
+        if(selectedOption === questionsData[currentQuestionIndex].a) {
+            score += 50; // Cada questão vale 50 (50 x 20 = 1000)
+        }
+
+        // Esconde atual
+        document.getElementById(`q-${currentQuestionIndex}`).classList.remove('active');
+        
+        currentQuestionIndex++;
+        selectedOption = null;
+        nextBtn.disabled = true;
+
+        if (currentQuestionIndex < questionsData.length) {
+            // Mostra próxima
+            document.getElementById(`q-${currentQuestionIndex}`).classList.add('active');
+            document.getElementById('question-counter').innerText = `Questão ${currentQuestionIndex + 1} de 20`;
+            updateProgress();
+        } else {
+            // Fim do quiz
+            showResult();
+        }
+    }
+
+    function updateProgress() {
+        const percent = ((currentQuestionIndex) / questionsData.length) * 100;
+        document.getElementById('progress').style.width = percent + '%';
+    }
+
+    function showResult() {
+        document.getElementById('quiz-screen').style.display = 'none';
+        document.getElementById('result-screen').style.display = 'block';
+        document.getElementById('final-score').innerText = score;
+    }
+
+    function saveScore() {
+        const studentName = document.getElementById('student-name').value.trim();
+        if(!studentName) {
+            alert("Por favor, digite seu nome e equipe para registrar a nota!");
+            return;
+        }
+
+        const data = {
+            nome: studentName,
+            nota: score,
+            data: new Date().toLocaleDateString('pt-BR') + ' ' + new Date().toLocaleTimeString('pt-BR')
+        };
+
+        // Puxa histórico do localStorage
+        let ranking = JSON.parse(localStorage.getItem('climatologia_ranking')) || [];
+        ranking.push(data);
+        
+        // Ordena por nota (maior primeiro)
+        ranking.sort((a, b) => b.nota - a.nota);
+        
+        // Salva
+        localStorage.setItem('climatologia_ranking', JSON.stringify(ranking));
+        
+        alert("Nota salva com sucesso no Diário do Professor!");
+        showRankingOnly();
+    }
+
+    function showRankingOnly() {
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('result-screen').style.display = 'none';
+        document.getElementById('ranking-screen').style.display = 'block';
+
+        const rankingList = document.getElementById('ranking-list');
+        rankingList.innerHTML = '';
+        
+        let ranking = JSON.parse(localStorage.getItem('climatologia_ranking')) || [];
+        
+        if(ranking.length === 0) {
+            rankingList.innerHTML = '<li>Nenhuma nota registrada neste aparelho ainda.</li>';
+        } else {
+            ranking.forEach((aluno, i) => {
+                rankingList.innerHTML += `
+                    <li>
+                        <strong>${i+1}º - ${aluno.nome}</strong> 
+                        <span>Nota: <strong>${aluno.nota}</strong> <small>(${aluno.data})</small></span>
+                    </li>
+                `;
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
