@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudos Intensivos de Geografia 1º Bimestre. Preparatório para o vestibular</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+            min-height: 100vh;
+        }
+        .header {
+            background-color: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 5px solid #ff6b6b;
+        }
+        .header h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 2.2em;
+        }
+        .header p {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 10px;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 1000px;
+            margin: 40px 0;
+        }
+        .menu-card {
+            background: white;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+        /* Efeito visual de barras de climograma no fundo dos cards */
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db 20%, #e74c3c 20%, #e74c3c 40%, #f1c40f 40%, #f1c40f 60%, #2ecc71 60%, #2ecc71 80%, #9b59b6 80%);
+        }
+        .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .menu-card h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .menu-card p {
+            color: #7f8c8d;
+            font-size: 1em;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Estudos Intensivos de Geografia - 1º Bimestre</h1>
+        <p>Preparatório para o Vestibular | Climatologia e Dinâmica Atmosférica</p>
+    </header>
+
+    <div class="menu-grid">
+        <a href="cards_climatologia.html" class="menu-card">
+            <span class="icon">🗂️</span>
+            <h2>Flashcards de Clima</h2>
+            <p>30 cartões interativos para fixar conceitos-chave.</p>
+        </a>
+
+        <a href="quiz_climatologia.html" class="menu-card">
+            <span class="icon">🎯</span>
+            <h2>Simulado Intensivo</h2>
+            <p>20 Questões no estilo Vestibular/ENEM. Alcance a nota 1000!</p>
+        </a>
+
+        <a href="podcast_clima.html" class="menu-card">
+            <span class="icon">🎧</span>
+            <h2>Podcast Climatologia</h2>
+            <p>Áudio completo de 26:44 min gerado pelo NotebookLM.</p>
+        </a>
+
+        <a href="mapa_mental_Climatologia.html" class="menu-card">
+            <span class="icon">🧠</span>
+            <h2>Mapa Mental</h2>
+            <p>Esquema visual dos fatores e elementos climáticos.</p>
+        </a>
+
+        <a href="video_climatologia.html" class="menu-card">
+            <span class="icon">▶️</span>
+            <h2>Videoaula</h2>
+            <p>Revisão aprofundada em vídeo sobre circulação atmosférica.</p>
+        </a>
+
+        <a href="slides_Climatologia.html" class="menu-card">
+            <span class="icon">📊</span>
+            <h2>Slides da Aula</h2>
+            <p>Apresentação completa com climogramas e mapas.</p>
+        </a>
+    </div>
+
+</body>
+</html>
