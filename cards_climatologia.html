@@ -69,7 +69,7 @@
             color: #333;
             transform: rotateY(180deg);
             border: 3px solid #2980b9;
-            overflow-y: auto; /* Adicionado para textos muito longos */
+            overflow-y: auto;
         }
         .controls { display: flex; gap: 20px; margin-top: 20px; }
         button {
@@ -112,36 +112,36 @@
     
     <script>
         const cards = [
-            { q: "O que é o tempo atmosférico?", a: "O estado momentâneo da atmosfera, variando em horas ou dias, influenciado por temperatura, chuvas e ventos[cite: 11, 12]." },
-            [cite_start]{ q: "O que é o clima?", a: "A sucessão habitual das condições atmosféricas de uma região, definida por estudos de no mínimo 30 anos[cite: 14]." },
-            [cite_start]{ q: "Qual a ciência responsável pela previsão de curto prazo?", a: "A Meteorologia, que monitora fenômenos imediatos[cite: 13, 36, 37]." },
-            [cite_start]{ q: "O que a Climatologia investiga?", a: "Padrões, tendências climáticas ao longo do tempo e impactos das mudanças climáticas globais[cite: 15, 20, 42, 43]." },
-            [cite_start]{ q: "Em qual camada da atmosfera ocorrem os principais fenômenos meteorológicos?", a: "Na Troposfera, a camada mais próxima da superfície[cite: 116]." },
-            [cite_start]{ q: "Qual a importância da Estratosfera?", a: "Ela abriga a camada de ozônio, responsável por filtrar parte da radiação solar ultravioleta[cite: 117]." },
-            [cite_start]{ q: "O que ocorre na Mesosfera?", a: "É a camada onde os meteoros sofrem atrito e se aquecem, criando rastros luminosos[cite: 118]." },
-            [cite_start]{ q: "Em qual camada se formam as auroras polares?", a: "Na Termosfera, que possui temperaturas altíssimas[cite: 119]." },
-            [cite_start]{ q: "Qual o nome da camada de transição para o espaço sideral?", a: "Exosfera[cite: 120]." },
-            [cite_start]{ q: "O que impulsiona a circulação geral da atmosfera?", a: "O aquecimento desigual do planeta pelo Sol, que faz o ar quente subir no equador e o ar frio descer nos polos[cite: 150, 151]." },
-            [cite_start]{ q: "Quais são as três grandes células de circulação do ar em cada hemisfério?", a: "Célula de Hadley, Célula de Ferrel e Célula Polar[cite: 152]." },
-            [cite_start]{ q: "O que são ventos alísios?", a: "Ventos predominantes que sopram dos trópicos em direção à linha do equador[cite: 176]." },
-            [cite_start]{ q: "O que é o efeito Coriolis?", a: "Um desvio na direção dos ventos causado pela rotação da Terra[cite: 179, 212]." },
-            [cite_start]{ q: "Como o efeito Coriolis afeta os furacões?", a: "No Hemisfério Norte, giram no sentido anti-horário; no Sul, no sentido horário[cite: 208, 209, 214, 215]." },
-            [cite_start]{ q: "O que ocorre nas zonas de baixa pressão atmosférica?", a: "O ar quente sobe levando umidade, favorecendo a formação de nuvens e chuvas[cite: 199]." },
-            [cite_start]{ q: "O que ocorre nas zonas de alta pressão atmosférica?", a: "O ar frio e seco desce, inibindo nuvens e tornando o clima seco[cite: 200]." },
-            [cite_start]{ q: "O que são 'Elementos Climáticos'?", a: "Variáveis medidas da atmosfera, como temperatura, umidade, ventos e pressão[cite: 232]." },
-            [cite_start]{ q: "O que são 'Fatores de Controle do Clima'?", a: "Condições geográficas que determinam o comportamento dos elementos (ex: latitude, relevo)[cite: 234]." },
-            [cite_start]{ q: "Como a Latitude afeta o clima?", a: "Baixas latitudes (Equador) recebem mais radiação e são quentes; altas latitudes (Polos) são mais frias[cite: 235, 236]." },
-            [cite_start]{ q: "Qual o impacto da Altitude?", a: "Quanto mais alto for o relevo, mais frio e menos denso será o ar[cite: 237]." },
-            { q: "O que são Barlavento e Sotavento?", a: "Barlavento é a face da montanha que recebe ventos úmidos (chove mais). [cite_start]Sotavento é a face oposta, mais seca[cite: 239]." },
-            { q: "Qual a diferença de clima entre Litoral (Maritimidade) e Interior (Continentalidade)?", a: "Litoral tem menor variação de temperatura. [cite_start]O interior sofre com maior amplitude térmica[cite: 240]." },
-            [cite_start]{ q: "Qual o impacto de uma Corrente Oceânica Fria?", a: "Reduz a umidade na região costeira e pode favorecer a formação de áreas áridas[cite: 241]." },
-            [cite_start]{ q: "O que são Massas de Ar?", a: "Grandes volumes de ar com características semelhantes de temperatura e umidade que se deslocam[cite: 242]." },
-            [cite_start]{ q: "O que um Climograma representa graficamente?", a: "A temperatura média mensal (em linha) e a precipitação/chuva média mensal (em colunas)[cite: 316]." },
-            [cite_start]{ q: "Quais as características do Clima Equatorial no climograma?", a: "Temperaturas permanentemente elevadas e chuvas abundantes ao longo de todo o ano[cite: 321, 325]." },
-            [cite_start]{ q: "Como é o Clima Tropical Central do Brasil (Cerrado)?", a: "Possui forte alternância entre estações: verões chuvosos e invernos secos[cite: 327, 791, 792]." },
-            [cite_start]{ q: "Como identificar o Clima Mediterrâneo pelo climograma?", a: "Possui forte sazonalidade: os verões são quentes e secos, enquanto os invernos são amenos e chuvosos[cite: 1123, 1126, 1127]." },
-            [cite_start]{ q: "O que marca o Clima Tropical Monçônico (Ex: Yangon)?", a: "Chuvas extremas concentradas em poucos meses do verão (acima de 500 mm/mês) e inverno muito seco[cite: 1185, 1186]." },
-            [cite_start]{ q: "Quais as características de um Clima Subpolar (Ex: Fairbanks)?", a: "Invernos muito longos e rigorosos (abaixo de 0°C por meses) e precipitação muito baixa o ano todo[cite: 1018, 1022]." }
+            { q: "O que é o tempo atmosférico?", a: "O estado momentâneo da atmosfera, variando em horas ou dias, influenciado por temperatura, chuvas e ventos." },
+            { q: "O que é o clima?", a: "A sucessão habitual das condições atmosféricas de uma região, definida por estudos de no mínimo 30 anos." },
+            { q: "Qual a ciência responsável pela previsão de curto prazo?", a: "A Meteorologia, que monitora fenômenos imediatos." },
+            { q: "O que a Climatologia investiga?", a: "Padrões, tendências climáticas ao longo do tempo e impactos das mudanças climáticas globais." },
+            { q: "Em qual camada da atmosfera ocorrem os principais fenômenos meteorológicos?", a: "Na Troposfera, a camada mais próxima da superfície." },
+            { q: "Qual a importância da Estratosfera?", a: "Ela abriga a camada de ozônio, responsável por filtrar parte da radiação solar ultravioleta." },
+            { q: "O que ocorre na Mesosfera?", a: "É a camada onde os meteoros sofrem atrito e se aquecem, criando rastros luminosos." },
+            { q: "Em qual camada se formam as auroras polares?", a: "Na Termosfera, que possui temperaturas altíssimas." },
+            { q: "Qual o nome da camada de transição para o espaço sideral?", a: "Exosfera." },
+            { q: "O que impulsiona a circulação geral da atmosfera?", a: "O aquecimento desigual do planeta pelo Sol, que faz o ar quente subir no equador e o ar frio descer nos polos." },
+            { q: "Quais são as três grandes células de circulação do ar em cada hemisfério?", a: "Célula de Hadley, Célula de Ferrel e Célula Polar." },
+            { q: "O que são ventos alísios?", a: "Ventos predominantes que sopram dos trópicos em direção à linha do equador." },
+            { q: "O que é o efeito Coriolis?", a: "Um desvio na direção dos ventos causado pela rotação da Terra." },
+            { q: "Como o efeito Coriolis afeta os furacões?", a: "No Hemisfério Norte, giram no sentido anti-horário; no Sul, no sentido horário." },
+            { q: "O que ocorre nas zonas de baixa pressão atmosférica?", a: "O ar quente sobe levando umidade, favorecendo a formação de nuvens e chuvas." },
+            { q: "O que ocorre nas zonas de alta pressão atmosférica?", a: "O ar frio e seco desce, inibindo nuvens e tornando o clima seco." },
+            { q: "O que são 'Elementos Climáticos'?", a: "Variáveis medidas da atmosfera, como temperatura, umidade, ventos e pressão." },
+            { q: "O que são 'Fatores de Controle do Clima'?", a: "Condições geográficas que determinam o comportamento dos elementos (ex: latitude, relevo)." },
+            { q: "Como a Latitude afeta o clima?", a: "Baixas latitudes (Equador) recebem mais radiação e são quentes; altas latitudes (Polos) são mais frias." },
+            { q: "Qual o impacto da Altitude?", a: "Quanto mais alto for o relevo, mais frio e menos denso será o ar." },
+            { q: "O que são Barlavento e Sotavento?", a: "Barlavento é a face da montanha que recebe ventos úmidos (chove mais). Sotavento é a face oposta, mais seca." },
+            { q: "Qual a diferença de clima entre Litoral (Maritimidade) e Interior (Continentalidade)?", a: "Litoral tem menor variação de temperatura. O interior sofre com maior amplitude térmica." },
+            { q: "Qual o impacto de uma Corrente Oceânica Fria?", a: "Reduz a umidade na região costeira e pode favorecer a formação de áreas áridas." },
+            { q: "O que são Massas de Ar?", a: "Grandes volumes de ar com características semelhantes de temperatura e umidade que se deslocam." },
+            { q: "O que um Climograma representa graficamente?", a: "A temperatura média mensal (em linha) e a precipitação/chuva média mensal (em colunas)." },
+            { q: "Quais as características do Clima Equatorial no climograma?", a: "Temperaturas permanentemente elevadas e chuvas abundantes ao longo de todo o ano." },
+            { q: "Como é o Clima Tropical Central do Brasil (Cerrado)?", a: "Possui forte alternância entre estações: verões chuvosos e invernos secos." },
+            { q: "Como identificar o Clima Mediterrâneo pelo climograma?", a: "Possui forte sazonalidade: os verões são quentes e secos, enquanto os invernos são amenos e chuvosos." },
+            { q: "O que marca o Clima Tropical Monçônico (Ex: Yangon)?", a: "Chuvas extremas concentradas em poucos meses do verão (acima de 500 mm/mês) e inverno muito seco." },
+            { q: "Quais as características de um Clima Subpolar (Ex: Fairbanks)?", a: "Invernos muito longos e rigorosos (abaixo de 0°C por meses) e precipitação muito baixa o ano todo." }
         ];
 
         let currentCard = 0;
@@ -165,5 +165,6 @@
 
         updateCard();
     </script>
+    <script async data-explicit-opt-in="true" data-cookie-opt-in="true" data-deployment-id="dpl_94YRGqnMLrAtjpcoW4CN84EHbGNT" src="https://vercel.live/_next-live/feedback/feedback.js"></script>
 </body>
 </html>
