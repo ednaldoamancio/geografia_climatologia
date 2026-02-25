@@ -15,6 +15,16 @@
             flex-direction: column;
             align-items: center;
         }
+        .nav-back {
+            align-self: flex-start;
+            margin-bottom: 20px;
+            text-decoration: none;
+            background: #34495e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
         .container {
             background-color: #fff;
             max-width: 800px;
@@ -129,48 +139,48 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>🌍 Desafio Climatologia: Rumo a Nota 1000!</h1>
+    <a href="index.html" class="nav-back">&#8592; Voltar ao Menu</a>
 
-    <div id="start-screen" style="display: block;">
-        <p>Bem-vindo ao simulado de Climatologia. São 20 questões elaboradas a partir do nosso material de estudos.</p>
-        <p><strong>Regras:</strong> Cada questão vale 50 pontos. O objetivo de sua equipe é atingir 1000 pontos. Refaça até conseguir a excelência!</p>
-        <button class="btn" onclick="startQuiz()">Iniciar Simulado</button>
-        <button class="btn" style="background-color: #f39c12; margin-top: 10px;" onclick="showRankingOnly()">Ver Diário de Notas (Ranking)</button>
-    </div>
-
-    <div id="quiz-screen" style="display: none;">
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress"></div>
+    <div class="container">
+        <h1>🌍 Desafio Climatologia: Rumo a Nota 1000!</h1>
+        
+        <div id="start-screen" style="display: block;">
+            <p>Bem-vindo ao simulado de Climatologia. São 20 questões elaboradas a partir do nosso material de estudos.</p>
+            <p><strong>Regras:</strong> Cada questão vale 50 pontos. O objetivo de sua equipe é atingir 1000 pontos. Refaça até conseguir a excelência!</p>
+            <button class="btn" onclick="startQuiz()">Iniciar Simulado</button>
+            <button class="btn" style="background-color: #f39c12; margin-top: 10px;" onclick="showRankingOnly()">Ver Diário de Notas (Ranking)</button>
         </div>
-        <h3 id="question-counter">Questão 1 de 20</h3>
         
-        <div id="questions-container">
+        <div id="quiz-screen" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
             </div>
-
-        <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Confirmar Resposta</button>
-    </div>
-
-    <div id="result-screen">
-        <h2>Fim do Simulado!</h2>
-        <p>Sua pontuação final (estilo ENEM) foi:</p>
-        <div class="score-display"><span id="final-score">0</span> / 1000</div>
+            <h3 id="question-counter">Questão 1 de 20</h3>
+            
+            <div id="questions-container">
+            </div>
+            
+            <button class="btn" id="next-btn" onclick="nextQuestion()" disabled>Confirmar Resposta</button>
+        </div>
         
-        <p>Digite seu NOME e o nome da sua EQUIPE para registrar no diário do professor:</p>
-        <input type="text" id="student-name" placeholder="Ex: João Silva - Equipe Alfa">
-        <button class="btn" onclick="saveScore()">Salvar Pontuação</button>
-        <button class="btn" style="background-color: #34495e; margin-top: 10px;" onclick="location.reload()">Tentar Novamente</button>
-    </div>
-
-    <div id="ranking-screen">
-        <h2>Diário de Notas do Professor</h2>
-        <p>As notas estão salvas neste aparelho.</p>
-        <ul class="ranking-list" id="ranking-list">
+        <div id="result-screen">
+            <h2>Fim do Simulado!</h2>
+            <p>Sua pontuação final (estilo ENEM) foi:</p>
+            <div class="score-display"><span id="final-score">0</span> / 1000</div>
+            <p>Digite seu NOME e o nome da sua EQUIPE para registrar no diário do professor:</p>
+            <input type="text" id="student-name" placeholder="Ex: João Silva - Equipe Alfa">
+            <button class="btn" onclick="saveScore()">Salvar Pontuação</button>
+            <button class="btn" style="background-color: #34495e; margin-top: 10px;" onclick="location.reload()">Tentar Novamente</button>
+        </div>
+        
+        <div id="ranking-screen">
+            <h2>Diário de Notas do Professor</h2>
+            <p>As notas estão salvas neste aparelho.</p>
+            <ul class="ranking-list" id="ranking-list">
             </ul>
-        <button class="btn" onclick="location.reload()">Voltar ao Início</button>
+            <button class="btn" onclick="location.reload()">Voltar ao Início</button>
+        </div>
     </div>
-
-</div>
 
 <script>
     const questionsData = [
@@ -410,6 +420,5 @@
         }
     }
 </script>
-
 </body>
 </html>
