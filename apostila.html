@@ -5,119 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apostila Completa: Climatologia e Meteorologia</title>
     <style>
+        /* PALETA DE CORES: Azul Escuro, Azul Celeste, Verde Turquesa, Branco e Cinza Claro */
+        :root {
+            --azul-escuro: #023e8a;
+            --azul-medio: #0077b6;
+            --azul-claro: #90e0ef;
+            --turquesa: #00b4d8;
+            --verde-agua: #e0fbfc;
+            --fundo: #f4f9f9;
+            --texto: #333333;
+            --texto-claro: #555555;
+            --branco: #ffffff;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8;
-            color: #333;
+            color: var(--texto);
+            background-color: var(--fundo);
+            margin: 0;
+            padding: 0 20px 40px 20px;
+        }
+
+        /* NAVEGAÇÃO */
+        .nav-bar {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px 20px 20px;
-            background-color: #f4f7f6;
-        }
-        /* ESTILO DOS BOTÕES DE NAVEGAÇÃO */
-        .nav-bar {
             display: flex;
             gap: 15px;
             padding: 20px 0;
-            width: 100%;
         }
         .nav-btn {
             text-decoration: none;
-            color: white;
+            color: var(--branco);
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             font-size: 0.95em;
-            transition: background 0.3s, transform 0.2s;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .nav-btn:hover { transform: translateY(-2px); }
-        .btn-voltar { background: #34495e; }
-        .btn-voltar:hover { background: #2c3e50; }
-        .btn-inicio { background: #3498db; }
-        .btn-inicio:hover { background: #2980b9; }
+        .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .btn-voltar { background: var(--azul-escuro); }
+        .btn-voltar:hover { background: #012a60; }
+        .btn-inicio { background: var(--turquesa); }
+        .btn-inicio:hover { background: #0096c7; }
 
+        /* CONTAINER PRINCIPAL */
         .container {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            background-color: var(--branco);
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 119, 182, 0.08);
         }
+
+        /* TIPOGRAFIA E CABEÇALHOS */
         h1 {
-            color: #2c3e50;
+            color: var(--branco);
+            background: linear-gradient(135deg, var(--azul-escuro), var(--turquesa));
             text-align: center;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
+            padding: 30px 20px;
+            border-radius: 8px;
+            margin-top: 0;
+            margin-bottom: 40px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.2);
         }
+
         h2 {
-            color: #2980b9;
-            margin-top: 40px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            color: var(--azul-medio);
+            margin-top: 50px;
+            border-left: 5px solid var(--turquesa);
+            padding-left: 15px;
+            background-color: var(--verde-agua);
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
         }
+
         h3 {
-            color: #34495e;
-            margin-top: 30px;
+            color: var(--azul-escuro);
+            margin-top: 35px;
+            font-size: 1.3em;
         }
+
         p {
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             text-align: justify;
+            color: var(--texto-claro);
+            font-size: 1.05em;
         }
+
+        /* CAIXAS DE DESTAQUE DIDÁTICO */
+        .destaque {
+            background-color: var(--verde-agua);
+            border-left: 4px solid var(--turquesa);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        .destaque strong { color: var(--azul-escuro); }
+
+        /* IMAGENS RESPONSIVAS */
         .img-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 40px 0;
+            padding: 20px;
+            background: var(--fundo);
+            border-radius: 12px;
+            border: 1px dashed var(--azul-claro);
         }
         .img-container img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            border: 1px solid #ddd;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         .img-caption {
             display: block;
-            margin-top: 8px;
-            font-size: 0.9em;
-            color: #7f8c8d;
-            font-style: italic;
+            margin-top: 12px;
+            font-size: 0.95em;
+            color: var(--azul-medio);
+            font-weight: bold;
         }
+
+        /* TABELAS DIDÁTICAS */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 25px 0;
-            background-color: #fff;
-        }
-        table, th, td {
-            border: 1px solid #dee2e6;
+            margin: 30px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         th, td {
-            padding: 15px;
+            padding: 18px;
             text-align: left;
+            border-bottom: 1px solid #edf2f4;
         }
         th {
-            background-color: #f8f9fa;
-            color: #2c3e50;
+            background-color: var(--azul-medio);
+            color: var(--branco);
+            font-size: 1.1em;
         }
+        tr:nth-child(even) { background-color: var(--verde-agua); }
+        tr:hover { background-color: var(--azul-claro); color: var(--azul-escuro); transition: 0.3s; }
+
+        /* CARTÕES DE COMPARAÇÃO */
         .comparison-container {
             display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
+            gap: 25px;
+            margin: 35px 0;
         }
         .comparison-box {
             flex: 1;
-            background: #fdfdfd;
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            border-radius: 5px;
+            background: var(--branco);
+            border: 2px solid var(--azul-claro);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.08);
+            transition: transform 0.3s;
         }
-        ul { margin-bottom: 20px; }
-        li { margin-bottom: 10px; }
-        
+        .comparison-box:hover { transform: translateY(-5px); border-color: var(--turquesa); }
+        .comparison-box h3 {
+            text-align: center;
+            margin-top: 0;
+            color: var(--branco);
+            background: var(--turquesa);
+            padding: 10px;
+            border-radius: 6px;
+        }
+        ul { margin-bottom: 20px; padding-left: 20px; }
+        li { margin-bottom: 12px; color: var(--texto-claro); }
+        li strong { color: var(--azul-escuro); }
+
+        /* GRID PARA DUAS IMAGENS LADO A LADO */
+        .img-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* RESPONSIVIDADE */
         @media (max-width: 768px) {
-            .comparison-container { flex-direction: column; }
-            .nav-bar { flex-direction: column; gap: 10px; }
-            .nav-btn { text-align: center; }
+            .comparison-container, .img-grid { flex-direction: column; grid-template-columns: 1fr; }
+            .container { padding: 25px; }
+            .nav-bar { flex-direction: column; gap: 10px; text-align: center; }
+            h1 { font-size: 1.6em; }
         }
     </style>
 </head>
@@ -129,35 +206,38 @@
     </div>
 
     <div class="container">
-        <h1>CLIMATOLOGIA E METEOROLOGIA</h1>
+        <h1>🌍 Climatologia e Meteorologia</h1>
         
         <section>
             <h2>Aula 1: Compreendendo o tempo e o clima</h2>
             <p>Quando você sai de casa e observa o céu nublado ou o sol forte, está percebendo o tempo atmosférico. Já quando alguém diz que o verão é chuvoso no Norte ou que o inverno é seco no Centro-Oeste, está se referindo ao clima de uma região. Embora muitas vezes sejam confundidos, tempo e clima representam realidades diferentes, e suas distinções são essenciais para compreender como a atmosfera influencia a vida cotidiana e o funcionamento das sociedades.</p>
-            <p>O tempo corresponde ao estado momentâneo da atmosfera, podendo variar ao longo de horas ou dias. Ele é determinado por fatores como temperatura, umidade, chuvas, ventos e pressão atmosférica e influencia diretamente as decisões do dia a dia, como escolher a roupa para sair ou planejar uma viagem. A ciência que estuda o tempo é a Meteorologia, voltada para a previsão de curto prazo e o monitoramento de fenômenos atmosféricos imediatos.</p>
-            <p>Por outro lado, o clima é a sucessão habitual do estado das condições atmosféricas de uma região e geralmente é definido por estudos de no mínimo 30 anos, segundo a Organização Mundial de Meteorologia. O estudo do clima é realizado pela Climatologia que busca compreender os padrões atmosféricos, sua variabilidade e os impactos das mudanças climáticas. Essa ciência é fundamental para o planejamento agrícola, a gestão ambiental, a prevenção de desastres e o desenvolvimento de políticas públicas sustentáveis.</p>
-            <p>Tanto a Meteorologia quanto a Climatologia utilizam tecnologias e dados para analisar os fenômenos atmosféricos, mas com objetivos distintos. Enquanto a Meteorologia atua no monitoramento do tempo em curto prazo, como em boletins meteorológicos ou alertas de tempestade, a Climatologia investiga tendências climáticas e cenários futuros, como os efeitos do aquecimento global.</p>
+            
+            <div class="destaque">
+                <p><strong>💡 Dica de Ouro:</strong> O <strong>tempo</strong> é o que você veste hoje (casaco, regata, guarda-chuva). O <strong>clima</strong> é o guarda-roupa que você tem na sua casa (as roupas adequadas para o padrão da sua região ao longo do ano).</p>
+            </div>
+
+            <p>O <strong>tempo</strong> corresponde ao estado momentâneo da atmosfera, podendo variar ao longo de horas ou dias. Ele é determinado por fatores como temperatura, umidade, chuvas, ventos e pressão atmosférica e influencia diretamente as decisões do dia a dia. A ciência que estuda o tempo é a Meteorologia, voltada para a previsão de curto prazo.</p>
+            <p>Por outro lado, o <strong>clima</strong> é a sucessão habitual do estado das condições atmosféricas de uma região e geralmente é definido por estudos de no mínimo 30 anos (Organização Mundial de Meteorologia). O estudo do clima é realizado pela Climatologia, que investiga tendências climáticas e cenários futuros, como os efeitos do aquecimento global.</p>
+            
             <div class="comparison-container">
                 <div class="comparison-box">
-                    <h3>Tempo / Meteorologia</h3>
+                    <h3>⏳ Tempo / Meteorologia</h3>
                     <ul>
                         <li><strong>Duração:</strong> curto prazo (horas ou dias).</li>
                         <li><strong>Escala:</strong> local e imediata.</li>
                         <li><strong>Exemplos:</strong> chuva à tarde, vento forte, neblina matinal.</li>
                         <li><strong>Observação:</strong> pode mudar várias vezes ao longo do dia.</li>
-                        <li><strong>Foco:</strong> fenômenos atmosféricos de curto prazo.</li>
-                        <li><strong>Aplicações:</strong> previsão do tempo, emissão de alertas, aviação, defesa civil.</li>
+                        <li><strong>Aplicações:</strong> previsão do tempo, emissão de alertas de tempestade.</li>
                     </ul>
                 </div>
                 <div class="comparison-box">
-                    <h3>Clima / Climatologia</h3>
+                    <h3>📅 Clima / Climatologia</h3>
                     <ul>
                         <li><strong>Duração:</strong> longo prazo (médias de no mínimo 30 anos).</li>
                         <li><strong>Escala:</strong> regional ou global.</li>
                         <li><strong>Exemplos:</strong> clima tropical, clima semiárido, clima equatorial.</li>
-                        <li><strong>Análise:</strong> baseada em séries históricas de dados meteorológicos.</li>
-                        <li><strong>Foco:</strong> padrões e tendências do clima ao longo do tempo.</li>
-                        <li><strong>Aplicações:</strong> planejamento urbano, agricultura de longo prazo, políticas ambientais.</li>
+                        <li><strong>Análise:</strong> baseada em séries históricas de dados.</li>
+                        <li><strong>Aplicações:</strong> planejamento urbano, agricultura, políticas ambientais.</li>
                     </ul>
                 </div>
             </div>
@@ -165,108 +245,136 @@
 
         <section>
             <h2>Aula 2: Atmosfera</h2>
-            <p>A atmosfera é a camada de gases que envolve a Terra e torna possível a vida no planeta. Ela protege os seres vivos das radiações ultravioletas emitidas pelo Sol, regula a temperatura e fornece o oxigênio necessário à respiração. Essa camada não é homogênea: organiza-se em diferentes faixas, chamadas camadas atmosféricas, que variam em composição, temperatura, pressão e função.</p>
+            <p>A atmosfera é a camada de gases que envolve a Terra e torna possível a vida no planeta. Ela protege os seres vivos das radiações ultravioletas emitidas pelo Sol, regula a temperatura e fornece o oxigênio necessário à respiração. Essa camada organiza-se em diferentes faixas, que variam em composição, temperatura, pressão e função:</p>
             <ul>
-                <li><strong>Troposfera:</strong> é a camada mais próxima da superfície e onde ocorrem os principais fenômenos meteorológicos, como chuva, ventos e variações de temperatura.</li>
+                <li><strong>Troposfera:</strong> é a camada mais próxima da superfície e onde ocorrem os principais fenômenos meteorológicos (chuva, ventos).</li>
                 <li><strong>Estratosfera:</strong> abriga a importante camada de ozônio, que filtra parte da radiação solar.</li>
-                <li><strong>Mesosfera:</strong> é onde os meteoros sofrem atrito e se aquecem, fazendo-os brilharem e criarem o rastro luminoso ao entrarem na atmosfera.</li>
+                <li><strong>Mesosfera:</strong> é onde os meteoros sofrem atrito e se aquecem, criando o rastro luminoso (estrelas cadentes).</li>
                 <li><strong>Termosfera:</strong> local das auroras polares e de temperaturas altíssimas.</li>
                 <li><strong>Exosfera:</strong> é a camada mais externa, fazendo a transição para o espaço sideral.</li>
             </ul>
+
+            <div class="img-container">
+                <img src="camadas_atmosfera.jpg" alt="Estrutura e Camadas da Atmosfera">
+                <span class="img-caption">Esquema das camadas da atmosfera terrestre e a altitude em que ocorrem.</span>
+            </div>
             
             <h3>Circulação Geral da Atmosfera</h3>
-            <p>Além das camadas, é importante compreender a circulação geral da atmosfera. O Sol aquece o planeta de forma desigual, provocando um movimento constante do ar. Próximo à linha do equador, o ar quente sobe, enquanto, nas regiões polares, o ar frio desce. Esses movimentos, combinados com a rotação da Terra, formam três grandes células de circulação em cada hemisfério: Hadley, Ferrel e Polar, que ajudam a distribuir o calor e a umidade pelo globo.</p>
-            <p>A circulação do ar gera os principais ventos predominantes: os alísios, que sopram dos trópicos para o equador; os contra-alísios, que seguem das latitudes médias para os polos; e os ventos polares, que vêm dos polos para as zonas temperadas. Esses ventos são desviados pelo efeito Coriolis, causado pela rotação da Terra, o que influencia a direção dos ventos e a rotação de ciclones e furacões.</p>
-            <p>Outro fator essencial para entender o comportamento do tempo e do clima são os sistemas de alta e baixa pressão. Nas zonas de baixa pressão, o ar quente sobe levando umidade, o que favorece a formação de nuvens e chuvas. Já nas zonas de alta pressão, o ar frio e seco desce, inibindo a formação de nuvens e tornando o clima seco. Esse equilíbrio entre circulação do ar, pressão e temperatura ajuda a explicar a diversidade climática do planeta.</p>
+            <p>O Sol aquece o planeta de forma desigual, provocando um movimento constante do ar. Próximo à linha do equador, o ar quente sobe, enquanto, nas regiões polares, o ar frio desce. Esses movimentos, combinados com a rotação da Terra, formam três grandes células de circulação em cada hemisfério: Hadley, Ferrel e Polar, que ajudam a distribuir o calor e a umidade pelo globo.</p>
+            
+            <div class="img-container">
+                <img src="celulas_circulacao.jpg" alt="Células de Circulação Atmosférica">
+                <span class="img-caption">Dinâmica das células de circulação do ar (Hadley, Ferrel e Polar) e a formação dos ventos.</span>
+            </div>
+
+            <p>A circulação do ar gera os principais ventos predominantes: os alísios, que sopram dos trópicos para o equador; os contra-alísios; e os ventos polares. Nas zonas de baixa pressão, o ar quente sobe levando umidade (favorecendo chuvas). Já nas zonas de alta pressão, o ar frio e seco desce (inibindo nuvens e formando desertos).</p>
         </section>
 
         <section>
             <h2>Aula 3: Elementos e Controles Climáticos</h2>
-            <p>Para compreender os diferentes tipos de clima existentes no planeta, é fundamental conhecer os elementos climáticos e os fatores de controle do clima, que atuam em conjunto e influenciam as condições atmosféricas de cada região.</p>
-            <p>Os <strong>elementos climáticos</strong> são as variáveis da atmosfera que podem ser medidas, como a temperatura, a umidade, a pressão atmosférica, os ventos e a precipitação. Eles explicam por que o tempo muda ao longo do dia ou entre as estações do ano.</p>
-            <p>Já os <strong>fatores de controle do clima</strong> são as condições geográficas e naturais que determinam como esses elementos se comportam em determinada localidade, influenciando diretamente seu clima:</p>
+            <p>Os <strong>elementos climáticos</strong> são as variáveis da atmosfera que podem ser medidas: temperatura, umidade, pressão atmosférica, ventos e precipitação.</p>
+            <p>Já os <strong>fatores de controle do clima</strong> são as condições geográficas naturais que determinam como esses elementos se comportam em determinada localidade, alterando o clima local.</p>
+            
             <table>
                 <thead>
                     <tr>
                         <th>Fator de controle</th>
-                        <th>Como influencia</th>
+                        <th>Como influencia na prática</th>
                         <th>Exemplo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td><strong>Latitude</strong></td>
-                        <td>Determina a quantidade de radiação solar. Áreas próximas ao equador são mais quentes; polos são frios.</td>
-                        <td>Equador x polos</td>
+                        <td>Determina a radiação solar. Áreas próximas ao equador são mais quentes; polos são frios.</td>
+                        <td>Equador x Polos</td>
                     </tr>
                     <tr>
                         <td><strong>Altitude</strong></td>
-                        <td>Influencia temperatura e pressão: quanto mais alto, mais frio e menos denso é o ar.</td>
+                        <td>Influencia temperatura e pressão: quanto mais alto o relevo, mais frio o ar fica.</td>
                         <td>Campos do Jordão (SP)</td>
                     </tr>
                     <tr>
                         <td><strong>Relevo</strong></td>
-                        <td>Barreira natural. Barlavento (lado dos ventos) chove mais; Sotavento (lado oposto) é mais seco.</td>
-                        <td>Serra do Mar</td>
+                        <td>Atua como barreira natural. O lado do vento (Barlavento) chove mais; o lado oposto (Sotavento) é seco.</td>
+                        <td>Serra do Mar / Planalto da Borborema</td>
                     </tr>
                     <tr>
                         <td><strong>Maritimidade</strong></td>
-                        <td>Proximidade do oceano deixa o clima mais ameno, com menor variação de temperatura.</td>
-                        <td>Recife (PE - litoral)</td>
+                        <td>A proximidade do oceano deixa o clima ameno, com menor variação (amplitude) de temperatura.</td>
+                        <td>Recife (Litoral)</td>
                     </tr>
                     <tr>
                         <td><strong>Continentalidade</strong></td>
-                        <td>Afastamento do oceano gera clima mais seco e com maior amplitude térmica.</td>
-                        <td>Brasília (DF) / Cuiabá (MT)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Correntes Oceânicas</strong></td>
-                        <td>Correntes quentes aquecem litorais; correntes frias reduzem umidade (podem gerar desertos).</td>
-                        <td>Litoral do RS (Corrente Fria)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Massas de ar</strong></td>
-                        <td>Grandes volumes de ar com características semelhantes de temperatura e umidade.</td>
-                        <td>Massa polar atlântica no Sul do Brasil</td>
+                        <td>O afastamento do oceano gera clima mais seco e com grande diferença entre dias quentes e noites frias.</td>
+                        <td>Brasília / Cuiabá</td>
                     </tr>
                 </tbody>
             </table>
+
+            <h3>A Influência Dinâmica (Correntes e Massas)</h3>
+            
+            <div class="img-grid">
+                <div class="img-container" style="margin-top: 0;">
+                    <img src="correntes_marítimas.jpg" alt="Mapa das Correntes Marítimas">
+                    <span class="img-caption">Correntes Oceânicas: As quentes trazem umidade; as frias podem gerar desertos litorâneos.</span>
+                </div>
+                <div class="img-container" style="margin-top: 0;">
+                    <img src="massas_de_ar.jpg" alt="Massas de Ar no Brasil">
+                    <span class="img-caption">Massas de Ar: Grandes "bolhas" de ar que carregam características (ex: umidade da Amazônia ou o frio Polar).</span>
+                </div>
+            </div>
         </section>
 
         <section>
-            <h2>Aula 4: Climograma</h2>
-            <p>O climograma é uma representação gráfica fundamental para o estudo do clima de uma região. Ele reúne dois dos principais elementos climáticos: a <strong>temperatura média mensal</strong> (representada por uma linha) e a <strong>precipitação média mensal</strong> (representada por colunas). Essa combinação possibilita visualizar padrões sazonais, como os meses mais quentes, frios, chuvosos ou secos.</p>
-            <p>O eixo horizontal do climograma mostra os meses do ano, enquanto os eixos verticais indicam os valores médios de temperatura (°C) e precipitação (mm). Ao analisar diferentes climogramas, é possível estabelecer relações entre clima e biomas. Por exemplo, a Floresta Amazônica apresenta temperaturas elevadas e chuvas intensas o ano todo.</p>
-            <p>No caso do Brasil, os climogramas revelam a grande diversidade climática do país:</p>
+            <h2>Aula 4: Climograma e Climas do Brasil</h2>
+            <p>O climograma é uma representação gráfica fundamental para o estudo do clima. Ele reúne dois elementos principais: a <strong>temperatura média mensal</strong> (representada por uma linha) e a <strong>precipitação média mensal</strong> (representada por colunas/barras azuis). O eixo horizontal mostra os meses (Janeiro a Dezembro).</p>
+
+            <div class="img-container">
+                <img src="climogramas_mundo.jpg" alt="Exemplos de Climogramas pelo Mundo">
+                <span class="img-caption">Como ler: As barras mostram a época de chuva ou seca; a linha mostra as variações de calor e frio.</span>
+            </div>
+
+            <p>No caso do Brasil, os climogramas revelam a nossa gigantesca diversidade climática e como o clima está intimamente ligado à vegetação (biomas) de cada região:</p>
             <ul>
-                <li><strong>Norte:</strong> clima equatorial úmido, favorecendo o bioma amazônico.</li>
-                <li><strong>Nordeste:</strong> clima semiárido, com baixa pluviosidade e vegetação de caatinga.</li>
-                <li><strong>Centro-Oeste:</strong> clima tropical, alternância clara entre estações secas e chuvosas (Cerrado).</li>
-                <li><strong>Sul e Sudeste:</strong> maior amplitude térmica e influência de frentes frias (Mata Atlântica e campos sulinos).</li>
+                <li><strong>Norte:</strong> Clima Equatorial Úmido (muita chuva e calor o ano todo), sustentando a Floresta Amazônica.</li>
+                <li><strong>Centro-Oeste e Sudeste:</strong> Clima Tropical (verão chuvoso e inverno muito seco), característico do Cerrado.</li>
+                <li><strong>Nordeste (Interior):</strong> Clima Semiárido (altas temperaturas e chuvas muito escassas), domínio da Caatinga.</li>
+                <li><strong>Sul:</strong> Clima Subtropical (chuvas bem distribuídas, invernos frios com geadas), onde ocorrem as Araucárias e Pampas.</li>
             </ul>
+
+            <div class="img-grid">
+                <div class="img-container" style="margin-top: 0;">
+                    <img src="climas_do_brasil.jpg" alt="Mapa Climático do Brasil">
+                    <span class="img-caption">Mapa da distribuição climática no território brasileiro.</span>
+                </div>
+                <div class="img-container" style="margin-top: 0;">
+                    <img src="climograma_capitais_brasil.jpg" alt="Climogramas das Capitais Brasileiras">
+                    <span class="img-caption">Comparativo dos perfis de chuva e temperatura nas grandes capitais.</span>
+                </div>
+            </div>
         </section>
 
         <section>
-            <h2>Aula 5: Elaboração e Interpretação de Climogramas Específicos</h2>
-            <p>A construção de climogramas com base em descrições textuais possibilita aprofundar a leitura geográfica. Cada tipo de clima apresenta variações específicas nos valores mensais. Abaixo estão as características de climas importantes e como eles se comportam:</p>
+            <h2>Aula 5: Leitura Avançada de Climogramas</h2>
+            <p>Para o vestibular, é crucial bater o olho no gráfico e reconhecer o tipo de clima. Veja o perfil dos principais modelos globais:</p>
             
-            <h3>1. Clima Subpolar (Ex: Fairbanks, EUA)</h3>
-            <p>Caracterizado por invernos muito longos e rigorosos (cerca de 9 meses) com temperaturas frequentemente a 0°C de outubro a abril. O verão é curto e ameno (junho a agosto), atingindo cerca de 15°C. A amplitude térmica anual é elevada. A precipitação anual é baixa (cerca de 300 mm), chovendo um pouco mais no verão (50-60 mm/mês) e sendo muito seco no inverno (abaixo de 20 mm).</p>
-            
-            <h3>2. Clima Semiárido (Ex: Niamey, Níger)</h3>
-            <p>Apresenta temperaturas elevadas ao longo de todo o ano (médias entre 24°C e 34°C), com amplitude térmica baixa. As chuvas são escassas, irregulares e concentradas. A estação chuvosa ocorre entre junho e setembro, enquanto de outubro a abril praticamente não chove (índice anual em torno de 500 mm).</p>
-            
-            <h3>3. Clima Subtropical (Ex: Orlando, EUA)</h3>
-            <p>Apresenta as quatro estações bem definidas, com verões quentes e invernos amenos. As chuvas são bem distribuídas ao longo do ano (índice anual supera 1000 mm), com maior concentração entre junho e setembro. Mesmo nos meses menos chuvosos, não se caracteriza uma estação seca.</p>
-            
-            <h3>4. Clima Mediterrâneo (Ex: Roma, Itália)</h3>
-            <p>Apresenta verões quentes e secos e invernos amenos e chuvosos. Há forte sazonalidade na precipitação: os meses de verão (junho a agosto) têm valores abaixo de 35 mm por mês, enquanto a chuva se concentra no outono e no inverno (outubro a dezembro, com 90 a 110 mm mensais).</p>
-            
-            <h3>5. Clima Tropical Úmido/Litorâneo (Ex: Recife, Brasil)</h3>
-            <p>Ocorre em áreas costeiras influenciadas pela maritimidade e massas de ar úmidas. Temperaturas elevadas o ano todo (24°C a 27°C) com baixa amplitude térmica. Chuvas regulares, mas com pico acentuado entre abril e julho (maio e junho chegam a 300 mm mensais). Não ocorre uma estação seca rigorosa.</p>
-            
-            <h3>6. Clima Tropical Monçônico (Ex: Yangon, Mianmar)</h3>
-            <p>Altas temperaturas durante todo o ano (25°C a 30°C). O destaque é a forte sazonalidade das chuvas: uma estação extremamente chuvosa de maio a setembro (chegando a 500 mm/mês no verão) e uma estação muito seca de dezembro a março (menos de 15 mm/mês) devido aos ventos continentais. O índice pluviométrico anual ultrapassa 4.000 mm.</p>
+            <div class="destaque">
+                <h3>1. Clima Subpolar (Ex: Fairbanks, EUA)</h3>
+                <p>Invernos muito longos e rigorosos com a linha de temperatura caindo frequentemente abaixo de 0°C de outubro a abril. A precipitação (chuva/neve) anual é muito baixa e a amplitude térmica é enorme.</p>
+                
+                <h3>2. Clima Semiárido (Ex: Niamey, Níger)</h3>
+                <p>A linha de temperatura é muito alta e quase reta (calor o ano todo). As barras de chuvas são inexistentes quase o ano inteiro, aparecendo pequenas colunas em uma curta estação de poucos meses.</p>
+                
+                <h3>3. Clima Subtropical (Ex: Orlando, EUA / Curitiba, Brasil)</h3>
+                <p>Apresenta a linha de temperatura formando uma concavidade nítida (esfria bem no inverno). O diferencial é que as barras de chuva são distribuídas o ano todo (não há estação 100% seca).</p>
+                
+                <h3>4. Clima Mediterrâneo (Ex: Roma, Itália)</h3>
+                <p>É o "diferentão" das provas. No verão (quando a temperatura sobe), as barras de chuva somem (verão seco). No inverno (quando a temperatura cai), as barras de chuva sobem (inverno chuvoso).</p>
+                
+                <h3>5. Clima Tropical Monçônico (Ex: Yangon, Mianmar)</h3>
+                <p>A linha de calor é alta. O impacto visual está nas colunas de chuva: no inverno quase não chove (seco), mas no verão as colunas azuis explodem, chegando a 500 mm em um único mês por conta dos ventos úmidos do oceano (Monções).</p>
+            </div>
         </section>
     </div>
 </body>
