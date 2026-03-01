@@ -7,8 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
     <script>
         tailwind.config = {
             theme: {
@@ -61,7 +59,10 @@
         
         .progress-bar { position: absolute; bottom: 0; left: 0; height: 5px; background: #0284c7; transition: width 0.3s; z-index: 50; }
 
+        .split-bg { background: linear-gradient(135deg, #475569 50%, #38bdf8 50%); }
+        .glass-panel { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.5); }
         .layer-gradient { background: linear-gradient(to top, #bae6fd, #38bdf8, #0ea5e9, #0284c7, #0f172a); }
+        .bar { transition: height 1s ease-out; bottom: 0; position: absolute; width: 80%; left: 10%; border-radius: 2px 2px 0 0;}
         
         /* Oculta scrollbar para estética limpa */
         ::-webkit-scrollbar { width: 6px; }
@@ -90,7 +91,7 @@
                     <i class="fas fa-bolt absolute top-1/4 left-1/4 text-4xl md:text-6xl text-slate-500 opacity-20"></i>
                     <i class="fas fa-cloud-showers-heavy absolute bottom-1/4 right-1/4 text-6xl md:text-8xl text-slate-600 opacity-30"></i>
                     
-                    <div class="absolute top-16 md:top-20 left-4 md:left-10 w-11/12 md:max-w-sm bg-white/80 backdrop-blur-sm border border-white/50 p-4 md:p-6 rounded-xl animate-fade-up delay-100 shadow-xl">
+                    <div class="absolute top-16 md:top-20 left-4 md:left-10 w-11/12 md:max-w-sm glass-panel p-4 md:p-6 rounded-xl animate-fade-up delay-100 shadow-xl">
                         <h2 class="text-xl md:text-3xl font-bold text-slate-800 mb-1 md:mb-2">TEMPO</h2>
                         <p class="text-xs md:text-sm text-slate-700 leading-relaxed">
                             Estado momentâneo da atmosfera. Caracterizado por condições voláteis e de curta duração.
@@ -102,7 +103,7 @@
                     <div class="absolute inset-0 bg-gradient-to-b from-sky-400 via-sky-200 to-orange-200 opacity-90"></div>
                     <i class="fas fa-sun absolute top-1/4 right-1/4 text-6xl md:text-8xl text-orange-300 opacity-50"></i>
                     
-                    <div class="absolute bottom-10 right-4 md:right-10 w-11/12 md:max-w-sm bg-white/80 backdrop-blur-sm border border-white/50 p-4 md:p-6 rounded-xl animate-fade-up delay-200 shadow-xl ml-auto">
+                    <div class="absolute bottom-10 right-4 md:right-10 w-11/12 md:max-w-sm glass-panel p-4 md:p-6 rounded-xl animate-fade-up delay-200 shadow-xl ml-auto">
                         <h2 class="text-xl md:text-3xl font-bold text-slate-800 mb-1 md:mb-2 text-right">CLIMA</h2>
                         <p class="text-xs md:text-sm text-slate-700 leading-relaxed text-right">
                             Média das condições meteorológicas. Refere-se aos padrões e tendências (mínimo de 30 anos).
@@ -110,16 +111,17 @@
                     </div>
                 </div>
 
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-auto text-center z-10 bg-white/90 backdrop-blur-md border border-white/50 py-6 px-4 md:py-8 md:px-12 rounded-2xl animate-fade-up shadow-2xl">
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-auto text-center z-10 glass-panel py-6 px-4 md:py-8 md:px-12 rounded-2xl animate-fade-up shadow-2xl">
                     <h1 class="text-2xl md:text-5xl font-extrabold text-brand-blue mb-2 md:mb-4 tracking-tight">CLIMATOLOGIA E<br>METEOROLOGIA</h1>
                     <h3 class="text-sm md:text-xl font-semibold text-slate-600">COMPREENDENDO A DINÂMICA ATMOSFÉRICA</h3>
+                    <p class="hidden md:block text-sm text-slate-500 mt-2">Uma jornada visual do tempo momentâneo aos padrões globais.</p>
                 </div>
             </div>
         </div>
 
         <div class="slide p-4 md:p-8 flex flex-col min-h-full bg-slate-50 pb-16">
-            <div class="flex-1 flex flex-col md:flex-row gap-4 md:gap-8 items-stretch pt-12">
-                <div class="flex-1 bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col animate-fade-up border-t-8 border-brand-blue">
+            <div class="flex-1 flex flex-col md:flex-row gap-4 md:gap-8 items-stretch pt-12 md:pt-12">
+                <div class="flex-1 bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col animate-fade-up border-t-8 border-brand-blue relative">
                     <h2 class="text-2xl md:text-4xl font-bold text-center text-brand-blue mb-4 md:mb-8">TEMPO</h2>
                     <div class="flex justify-center mb-6 md:mb-8 text-4xl md:text-6xl text-brand-accent gap-4 md:gap-6">
                         <i class="fas fa-calendar-day"></i> <i class="fas fa-newspaper"></i> <i class="fas fa-cloud-sun-rain text-sky-400"></i>
@@ -132,8 +134,9 @@
                 </div>
 
                 <div class="md:hidden w-full h-px bg-slate-300 my-2"></div>
+                <div class="hidden md:flex flex-col justify-center items-center text-slate-300"><div class="w-px h-full bg-slate-300"></div></div>
 
-                <div class="flex-1 bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col animate-fade-up delay-100 border-t-8 border-brand-dark">
+                <div class="flex-1 bg-white rounded-2xl shadow-lg p-6 md:p-8 flex flex-col animate-fade-up delay-100 border-t-8 border-brand-dark relative">
                     <h2 class="text-2xl md:text-4xl font-bold text-center text-brand-dark mb-4 md:mb-8">CLIMA</h2>
                     <div class="flex justify-center mb-6 md:mb-8 text-4xl md:text-6xl text-slate-700 gap-4 md:gap-6">
                         <i class="fas fa-film"></i> <i class="fas fa-book-journal-whills text-amber-700"></i> <i class="fas fa-globe-americas text-emerald-600"></i>
@@ -146,34 +149,43 @@
                 </div>
             </div>
             
-            <div class="mt-6 md:mt-8 py-3 px-4 md:py-4 md:px-8 bg-sky-100 rounded-xl border border-brand-accent/20 text-center animate-fade-up delay-200">
+            <div class="mt-6 md:mt-8 py-3 px-4 md:py-4 md:px-8 bg-brand-light rounded-xl border border-brand-accent/20 text-center animate-fade-up delay-200">
                 <h3 class="text-base md:text-2xl font-bold text-brand-blue">O tempo é o que você veste hoje; o clima é o guarda-roupa que você tem.</h3>
             </div>
         </div>
 
         <div class="slide p-6 md:p-12 min-h-full flex flex-col bg-white pb-16">
             <div class="flex-1 flex flex-col md:flex-row gap-6 md:gap-12 animate-fade-up pt-12">
-                <div class="flex-1 rounded-3xl bg-slate-50 border border-slate-200 p-6 md:p-10 shadow-sm flex flex-col items-center text-center">
+                <div class="flex-1 rounded-3xl bg-slate-50 border border-slate-200 p-6 md:p-10 shadow-sm flex flex-col items-center">
                     <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mb-6 md:mb-10">METEOROLOGIA</h2>
                     <i class="fas fa-satellite-dish text-6xl md:text-8xl text-sky-600 mb-6 md:mb-10"></i>
-                    <ul class="text-sm md:text-lg space-y-3 md:space-y-4 w-full text-left">
+                    <ul class="text-sm md:text-lg space-y-3 md:space-y-4 w-full">
                         <li><i class="fas fa-crosshairs text-brand-accent mr-2"></i> <strong>Foco:</strong> Previsão imediata.</li>
                         <li><i class="fas fa-toolbox text-brand-accent mr-2"></i> <strong>Ferramentas:</strong> Satélites, radares.</li>
                         <li><i class="fas fa-bullseye text-brand-accent mr-2"></i> <strong>Objetivo:</strong> Alertas, cotidiano.</li>
                     </ul>
                 </div>
                 
-                <div class="flex-1 rounded-3xl bg-slate-50 border border-slate-200 p-6 md:p-10 shadow-sm flex flex-col items-center text-center">
+                <div class="flex-1 rounded-3xl bg-slate-50 border border-slate-200 p-6 md:p-10 shadow-sm flex flex-col items-center">
                     <h2 class="text-2xl md:text-3xl font-bold text-brand-dark mb-6 md:mb-10">CLIMATOLOGIA</h2>
                     <div class="relative mb-6 md:mb-10 text-6xl md:text-8xl text-brand-dark">
                         <i class="fas fa-chart-line"></i>
                         <i class="fas fa-server absolute bottom-0 -right-4 text-3xl md:text-4xl text-slate-500"></i>
                     </div>
-                    <ul class="text-sm md:text-lg space-y-3 md:space-y-4 w-full text-left">
+                    <ul class="text-sm md:text-lg space-y-3 md:space-y-4 w-full">
                         <li><i class="fas fa-crosshairs text-brand-dark mr-2"></i> <strong>Foco:</strong> Padrões e tendências.</li>
                         <li><i class="fas fa-toolbox text-brand-dark mr-2"></i> <strong>Ferramentas:</strong> Séries históricas.</li>
                         <li><i class="fas fa-bullseye text-brand-dark mr-2"></i> <strong>Objetivo:</strong> Planejamento urbano.</li>
                     </ul>
+                </div>
+            </div>
+            
+            <div class="mt-8 md:mt-12 animate-fade-in delay-200 relative hidden md:block">
+                <div class="h-1 bg-brand-blue w-full relative">
+                    <div class="absolute -right-2 -top-2 w-0 h-0 border-t-[10px] border-t-transparent border-l-[15px] border-l-brand-blue border-b-[10px] border-b-transparent"></div>
+                </div>
+                <div class="flex justify-between mt-4 font-bold text-brand-blue text-xl">
+                    <span>Horas / Dias</span><span>Décadas / Séculos</span>
                 </div>
             </div>
         </div>
@@ -258,6 +270,10 @@
                     </ul>
                 </div>
             </div>
+            
+            <p class="mt-8 md:mt-16 text-sm md:text-xl text-slate-600 text-center animate-fade-in delay-200">
+                Os fatores geográficos determinam como os elementos se comportam em cada região.
+            </p>
         </div>
 
         <div class="slide p-4 md:p-10 min-h-full flex flex-col bg-slate-100 pb-16">
@@ -303,23 +319,47 @@
         </div>
 
         <div class="slide p-4 md:p-10 min-h-full bg-slate-50 flex flex-col items-center pb-16">
-            <h2 class="text-2xl md:text-4xl font-bold text-brand-dark mb-4 md:mb-8 text-center animate-fade-in mt-12 md:mt-6">Anatomia de um Climograma</h2>
+            <h2 class="text-2xl md:text-4xl font-bold text-brand-dark mb-6 md:mb-10 text-center animate-fade-in mt-12 md:mt-6">Anatomia de um Climograma</h2>
             
-            <div class="bg-white p-4 md:p-8 rounded-2xl shadow-xl border border-slate-200 w-full max-w-4xl flex-1 flex flex-col animate-fade-up">
-                
-                <div class="text-center text-xs md:text-sm font-bold mb-4 flex flex-col md:flex-row justify-center gap-2 md:gap-8 bg-slate-100 p-3 rounded-lg border border-slate-200">
-                    <span class="text-red-500 flex items-center justify-center gap-2">
-                        <i class="fas fa-temperature-high"></i> Linha Vermelha = Temperatura (°C)
-                    </span>
-                    <span class="text-sky-500 flex items-center justify-center gap-2">
-                        <i class="fas fa-cloud-rain"></i> Barras Azuis = Precipitação (mm)
-                    </span>
+            <div class="bg-white p-4 md:p-8 rounded-2xl shadow-xl border border-slate-200 w-full max-w-4xl animate-fade-up relative overflow-hidden">
+                <div class="text-center text-xs md:text-sm text-slate-700 font-bold mb-4">
+                    <span class="text-red-500">Linha Vermelha = Temperatura (°C)</span><br>
+                    <span class="text-blue-500">Barras Azuis = Precipitação (mm)</span>
                 </div>
 
-                <div class="relative w-full flex-1 min-h-[300px] md:min-h-[400px]">
-                    <canvas id="climogramaChart"></canvas>
+                <div class="relative w-full h-[250px] md:h-[380px] pl-8 md:pl-16 pr-8 md:pr-16 pb-8 md:pb-12 pt-4 md:pt-8 flex items-end border-l-2 border-b-2 border-r-2 border-slate-400">
+                    
+                    <div class="absolute left-1 md:left-4 top-4 md:top-8 bottom-8 md:bottom-12 flex flex-col justify-between text-[10px] md:text-xs text-slate-600 font-mono text-right w-6 md:w-10">
+                        <span>300</span><span>200</span><span>100</span><span>0</span>
+                    </div>
+
+                    <div class="absolute right-1 md:right-4 top-4 md:top-8 bottom-8 md:bottom-12 flex flex-col justify-between text-[10px] md:text-xs text-slate-600 font-mono text-left w-6 md:w-10">
+                        <span>30</span><span>20</span><span>10</span><span>0</span>
+                    </div>
+
+                    <div class="w-full h-full relative z-10 flex items-end justify-between px-1 md:px-2 gap-1 md:gap-2">
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 70%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar delay-100" style="height: 80%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar delay-200" style="height: 60%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar delay-300" style="height: 40%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 20%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 10%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 15%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 25%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 50%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 75%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 90%"></div>
+                        <div class="bg-brand-accent/80 w-full rounded-t-sm bar" style="height: 85%"></div>
+                    </div>
+
+                    <svg class="absolute inset-0 w-full h-full z-20 pl-8 md:pl-16 pr-8 md:pr-16 pt-4 md:pt-8 pb-8 md:pb-12" preserveAspectRatio="none">
+                        <polyline points="3%,40% 11%,42% 20%,38% 28%,30% 36%,20% 45%,15% 53%,10% 62%,18% 70%,25% 78%,35% 87%,45% 95%,50%" fill="none" stroke="#ef4444" stroke-width="3" />
+                    </svg>
+
+                    <div class="absolute bottom-2 left-8 md:left-16 right-8 md:right-16 flex justify-between text-[10px] md:text-sm font-bold text-slate-800 px-1 md:px-4">
+                        <span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span>
+                    </div>
                 </div>
-                <div class="text-center mt-4 text-xs md:text-sm font-bold text-slate-500">MESES DO ANO</div>
             </div>
         </div>
 
@@ -327,21 +367,25 @@
             <h2 class="text-2xl md:text-4xl font-bold text-brand-dark mb-6 md:mb-10 text-center animate-fade-in mt-12 md:mt-6">O Clima define a Paisagem</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full pb-10 animate-fade-up">
+                
                 <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center border-t-4 border-emerald-600">
                     <h3 class="font-bold text-sm text-center mb-1 bg-brand-blue text-white w-full py-1 rounded">Amazônia</h3>
                     <p class="text-xs text-slate-500 mb-2">Equatorial (Quente/Úmido)</p>
                     <i class="fas fa-tree text-4xl text-emerald-700 my-2"></i>
                 </div>
+
                 <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center border-t-4 border-amber-500">
                     <h3 class="font-bold text-sm text-center mb-1 bg-brand-blue text-white w-full py-1 rounded">Cerrado</h3>
                     <p class="text-xs text-slate-500 mb-2">Tropical (Estação Seca)</p>
                     <i class="fab fa-pagelines text-4xl text-amber-600 my-2"></i>
                 </div>
+
                 <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center border-t-4 border-orange-700">
                     <h3 class="font-bold text-sm text-center mb-1 bg-brand-blue text-white w-full py-1 rounded">Caatinga</h3>
                     <p class="text-xs text-slate-500 mb-2">Semiárido (Seco)</p>
                     <i class="fas fa-sun text-4xl text-orange-500 my-2"></i>
                 </div>
+
                 <div class="bg-white rounded-xl shadow p-4 flex flex-col items-center border-t-4 border-lime-600">
                     <h3 class="font-bold text-sm text-center mb-1 bg-brand-blue text-white w-full py-1 rounded">Pampas</h3>
                     <p class="text-xs text-slate-500 mb-2">Subtropical (Inverno Frio)</p>
@@ -359,16 +403,23 @@
                     <i class="fas fa-tractor text-4xl text-emerald-600 mb-2"></i>
                     <p class="text-sm text-slate-600">Planejamento e Plantio</p>
                 </div>
+
                 <div class="bg-slate-100 p-4 md:p-6 rounded-xl shadow-md border border-slate-200 text-center flex-1">
                     <h3 class="font-bold text-brand-blue mb-2 text-lg">Defesa Civil</h3>
                     <i class="fas fa-city text-4xl text-sky-500 mb-2"></i>
                     <p class="text-sm text-slate-600">Cidades Resilientes</p>
                 </div>
+
                 <div class="bg-slate-100 p-4 md:p-6 rounded-xl shadow-md border-2 border-brand-accent text-center flex-1">
                     <h3 class="font-bold text-brand-blue mb-2 text-lg">Sustentabilidade</h3>
                     <i class="fas fa-globe-americas text-4xl text-blue-600 mb-2"></i>
                     <p class="text-sm font-semibold text-slate-700">Mudanças Climáticas</p>
                 </div>
+            </div>
+
+            <div class="mt-10 md:mt-16 text-center bg-brand-light py-4 px-6 md:px-8 rounded-2xl md:rounded-full shadow-inner animate-fade-in delay-300">
+                <h3 class="text-lg md:text-2xl font-bold text-brand-blue">A atmosfera é um sistema dinâmico.</h3>
+                <h3 class="text-sm md:text-xl font-semibold text-brand-dark mt-2">Compreendê-la é a chave para a nossa sobrevivência.</h3>
             </div>
         </div>
 
@@ -383,89 +434,18 @@
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
     const progressBar = document.getElementById('progressBar');
-    let chartInstance = null; // Variável global para o gráfico
-
-    // FUNÇÃO PARA RENDERIZAR O GRÁFICO (CHART.JS)
-    function renderizarGrafico() {
-        const ctx = document.getElementById('climogramaChart');
-        if (!ctx) return;
-        
-        if (chartInstance) chartInstance.destroy(); // Reseta a animação
-
-        chartInstance = new Chart(ctx, {
-            data: {
-                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                datasets: [
-                    {
-                        type: 'line',
-                        label: 'Temperatura (°C)',
-                        data: [27, 27, 26, 24, 21, 19, 18, 20, 23, 25, 26, 27],
-                        borderColor: '#ef4444', // Vermelho tailwind
-                        backgroundColor: '#ef4444',
-                        borderWidth: 3,
-                        tension: 0.4, // Curva suave
-                        yAxisID: 'yTemp',
-                        pointBackgroundColor: '#ef4444',
-                        order: 1
-                    },
-                    {
-                        type: 'bar',
-                        label: 'Precipitação (mm)',
-                        data: [250, 280, 210, 140, 60, 30, 20, 40, 90, 150, 200, 260],
-                        backgroundColor: 'rgba(14, 165, 233, 0.8)', // Azul tailwind
-                        borderRadius: 4,
-                        yAxisID: 'yChuva',
-                        order: 2
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                animation: { duration: 2000, easing: 'easeOutQuart' },
-                plugins: { legend: { display: false } }, // Esconde legenda (já fizemos em HTML)
-                scales: {
-                    x: { grid: { display: false } },
-                    yChuva: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: { display: true, text: 'Precipitação (mm)', color: '#0ea5e9', font: {weight: 'bold'} },
-                        suggestedMax: 350,
-                        grid: { color: 'rgba(0,0,0,0.05)' }
-                    },
-                    yTemp: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: { display: true, text: 'Temperatura (°C)', color: '#ef4444', font: {weight: 'bold'} },
-                        suggestedMin: 0,
-                        suggestedMax: 40,
-                        grid: { drawOnChartArea: false } // Para não cruzar linhas do fundo
-                    }
-                }
-            }
-        });
-    }
 
     function updateSlide() {
         slides.forEach((slide, index) => {
             if (index === currentSlide) {
                 slide.classList.add('active');
                 slide.scrollTop = 0; // Volta a rolagem do slide para o topo
-                
-                const animatedEls = slide.querySelectorAll('.animate-fade-up, .animate-fade-in');
+                const animatedEls = slide.querySelectorAll('.animate-fade-up, .animate-fade-in, .bar');
                 animatedEls.forEach(el => {
                     el.style.animation = 'none';
                     el.offsetHeight; 
                     el.style.animation = null; 
                 });
-
-                // Se for o slide 7 (índice 6), dispara a animação do gráfico
-                if (index === 6) {
-                    setTimeout(renderizarGrafico, 300);
-                }
-
             } else {
                 slide.classList.remove('active');
             }
@@ -484,7 +464,7 @@
     function nextSlide() { if (currentSlide < slides.length - 1) { currentSlide++; updateSlide(); } }
     function prevSlide() { if (currentSlide > 0) { currentSlide--; updateSlide(); } }
 
-    // Eventos Teclado
+    // Evento Teclado
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' || e.key === 'Space') nextSlide();
         else if (e.key === 'ArrowLeft') prevSlide();
@@ -504,8 +484,10 @@
     }, {passive: true});
 
     function handleSwipe() {
-        if (touchendX < touchstartX - 50) nextSlide(); // arrastou para a esquerda
-        if (touchendX > touchstartX + 50) prevSlide(); // arrastou para a direita
+        // Se arrastar mais de 50px para a esquerda -> próximo slide
+        if (touchendX < touchstartX - 50) nextSlide();
+        // Se arrastar mais de 50px para a direita -> slide anterior
+        if (touchendX > touchstartX + 50) prevSlide();
     }
 
     updateSlide();
